@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddActivity from './pages/Activity/AddActivity';
@@ -8,6 +9,7 @@ import UpdateActivity from './pages/Activity/UpdateActivity';
 import Activities from './pages/Activity/Activities';
 import ActivityBook from './pages/ActivityBook/ActivityBook';
 import ActivityBookinglist from './pages/ActivityBook/ActivityBooklist';
+
 
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-=======
+
  
 }
 
