@@ -17,16 +17,16 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex flex-1 justify-center space-x-8">
           <Link to="/about" className="text-gray-700 hover:text-blue-600 transition duration-300">
-            About
+            Home
           </Link>
           <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition duration-300">
-            Contact
+            Hotels
           </Link>
           <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition duration-300">
             Blog
           </Link>
-          <Link to="/destinations" className="text-gray-700 hover:text-blue-900 transition duration-300">
-            Destinations
+          <Link to="/activities/customer" className="text-gray-700 hover:text-blue-900 transition duration-300">
+            Tasks
           </Link>
         </div>
 
@@ -35,9 +35,7 @@ const Navbar = () => {
           <Link to="/login" className="text-blue-900 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300">
             Sign In
           </Link>
-          <Link to="/signup" className="bg-blue-900 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">
-            Sign Up
-          </Link>
+          
         </div>
 
         {/* Mobile Menu Button */}

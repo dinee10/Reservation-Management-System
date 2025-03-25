@@ -7,6 +7,8 @@ import UpdateActivity from '../pages/Activity/UpdateActivity';
 import Activities from '../pages/Activity/Activities';
 import ActivityBook from '../pages/ActivityBook/ActivityBook';
 import ActivityBookinglist from '../pages/ActivityBook/ActivityBooklist';
+import Dashboard from '../pages/Admin/Dashboard';
+import Login from '../pages/Login/Login';
 
 function Approutes() {
   const [count, setCount] = useState(0)
@@ -15,15 +17,19 @@ function Approutes() {
      
       <Routes>
         {/* Redirect to Activity List by default */}
-        <Route path="/" element={<Navigate to="/activities" />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+      
         
         {/* Activity Management Routes */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/activities" element={<ActivityList />} />
         <Route path="/activities/create" element={<AddActivity />} />
         <Route path="/activities/update/:id" element={<UpdateActivity />} />
         <Route path="/activities/customer" element={<Activities />} />
         <Route path="/activitybooking/:activityId" element={<ActivityBook/>} />
         <Route path="/activities/customer/book" element={<ActivityBookinglist />} />
+
       </Routes>
     </BrowserRouter>
   );
