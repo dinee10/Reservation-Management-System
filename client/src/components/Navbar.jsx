@@ -1,0 +1,69 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-5 left-10 right-10 bg-gray-100 shadow-lg rounded-full z-50">
+      <div className="container mx-auto flex items-center justify-between p-4">
+        
+        {/* Navbar Title */}
+        <div className="text-2xl font-bold text-indigo-900">
+          Hotel Reservation
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex flex-1 justify-center space-x-8">
+          <Link to="/about" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            About
+          </Link>
+          <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            Contact
+          </Link>
+          <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            Blog
+          </Link>
+          <Link to="/destinations" className="text-gray-700 hover:text-blue-900 transition duration-300">
+            Destinations
+          </Link>
+        </div>
+
+        {/* Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          <Link to="/login" className="text-blue-900 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300">
+            Sign In
+          </Link>
+          <Link to="/signup" className="bg-blue-900 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+            Sign Up
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-gray-900"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-md rounded-lg mt-2 p-4 absolute top-16 left-10 right-10 z-50">
+          <Link to="/about" className="block text-gray-700 py-2 hover:text-blue-600">About</Link>
+          <Link to="/contact" className="block text-gray-700 py-2 hover:text-blue-600">Contact</Link>
+          <Link to="/blog" className="block text-gray-700 py-2 hover:text-blue-600">Blog</Link>
+          <Link to="/destinations" className="block text-gray-700 py-2 hover:text-blue-600">Destinations</Link>
+          <div className="mt-4">
+            <Link to="/login" className="block text-blue-600 py-2 hover:bg-gray-300 rounded-lg text-center">Sign In</Link>
+            <Link to="/signup" className="block bg-blue-600 text-white py-2 mt-2 rounded-lg text-center hover:bg-blue-700">Sign Up</Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
