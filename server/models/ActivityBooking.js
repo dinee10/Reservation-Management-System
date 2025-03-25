@@ -20,7 +20,13 @@ const BookingSchema = new Schema({
     },
     date: { 
         type: Date, 
-        required: true }
+        required: true 
+    },
+    activityId: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Activity", 
+        required: true 
+    } // Add reference to Activity
 });
 
 const Booking = mongoose.model("ActivityBooking", BookingSchema);
