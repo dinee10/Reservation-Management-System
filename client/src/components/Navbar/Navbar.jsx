@@ -2,10 +2,31 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
+
+// Import the logo image
+import logo from "../../assets/Dinitha/logo3.png"; // Update the path to your logo file
+
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+
+    <nav className="fixed z-50 bg-white rounded-full shadow-lg top-5 left-10 right-10">
+      <div className="container flex items-center justify-between p-4 mx-auto">
+        
+        {/* Navbar Logo */}
+        <div className="text-2xl font-bold">
+          <Link to="/user-blog">
+            <img
+              src={logo}
+              alt="Ceylon Odyssey Logo"
+              className="w-auto h-12" // Adjust height as needed, width will scale proportionally
+            />
+          </Link>
+        </div>
+
+ 
     <nav className="fixed top-5 left-10 right-10 bg-gray-100 shadow-lg rounded-full z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
         
@@ -27,20 +48,26 @@ const Navbar = () => {
           </Link>
           <Link to="/activities/customer" className="text-gray-700 hover:text-blue-900 transition duration-300">
             Tasks
+
           </Link>
         </div>
 
         {/* Buttons */}
+
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/login" className="text-blue-900 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300">
             Sign In
           </Link>
           
-        </div>
+     </div>
 
         {/* Mobile Menu Button */}
         <button
+
+          className="text-gray-900 md:hidden"
+
           className="md:hidden text-gray-900"
+
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -49,6 +76,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
+
         <div className="md:hidden bg-white shadow-md rounded-lg mt-2 p-4 absolute top-16 left-10 right-10 z-50">
           <Link to="/about" className="block text-gray-700 py-2 hover:text-blue-600">About</Link>
           <Link to="/contact" className="block text-gray-700 py-2 hover:text-blue-600">Contact</Link>
@@ -57,6 +85,7 @@ const Navbar = () => {
           <div className="mt-4">
             <Link to="/login" className="block text-blue-600 py-2 hover:bg-gray-300 rounded-lg text-center">Sign In</Link>
             <Link to="/signup" className="block bg-blue-600 text-white py-2 mt-2 rounded-lg text-center hover:bg-blue-700">Sign Up</Link>
+
           </div>
         </div>
       )}
@@ -64,4 +93,6 @@ const Navbar = () => {
   );
 };
 
+
 export default Navbar;
+
