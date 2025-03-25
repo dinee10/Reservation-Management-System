@@ -1,38 +1,41 @@
 const Booking = require("../models/ActivityBooking");
 
-// Add a new booking
 const addBooking = async (req, res) => {
-    const { guestName, email, phoneNumber, noOfPassengers, date } = req.body;
+    const { guestName, email, phoneNumber, noOfPassengers, date, activityId } = req.body;
 
-    if ( !guestName || !email || !phoneNumber || !noOfPassengers || !date) {
-        return res.status(400).json({ message: "All fields are required" });
+    console.log("Received booking request:", req.body); // Debug log
+
+    if (!guestName || !email || !phoneNumber || !noOfPassengers || !date || !activityId) {
+        return res.status(400).json({ message: "All fields are required", missingFields: { guestName, email, phoneNumber, noOfPassengers, date, activityId } });
     }
 
     const today = new Date().toISOString().split("T")[0]; // Get today's date
-        if (date < today) {
-            return res.status(400).json({ error: "You cannot book a past date!" });
-        }
+    if (date < today) {
+        return res.status(400).json({ error: "You cannot book a past date!" });
+    }
 
     const newBooking = new Booking({
         guestName,
         email,
         phoneNumber,
         noOfPassengers,
-        date
+        date,
+        activityId,
     });
 
     try {
         await newBooking.save();
         return res.status(201).json({ message: "Booking added successfully", booking: newBooking });
     } catch (err) {
-        return res.status(500).json({ message: "Failed to add booking", error: err });
+        console.error("Error saving booking:", err); // Debug log
+        return res.status(500).json({ message: "Failed to add booking", error: err.message });
     }
 };
 
-// Get all bookings
+// Get all bookings (populate activity name)
 const getAllBookings = async (req, res) => {
     try {
-        const bookings = await Booking.find();
+        const bookings = await Booking.find().populate("activityId", "name"); // Populate activity name
         return res.status(200).json({ bookings });
     } catch (err) {
         return res.status(500).json({ message: "Failed to retrieve bookings", error: err });
