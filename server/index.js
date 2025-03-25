@@ -4,6 +4,7 @@ const cors = require ('cors')
 const path = require('path');
 const activityRoutes = require('./routes/ActivityRoutes');
 const bookingRoutes = require("./routes/ActivityBookingRoute");
+const loginRoutes = require("./routes/auth")
 
 const app = express()
 require("dotenv").config();
@@ -16,6 +17,7 @@ app.use(express.static('public/images'));
 app.use(express.json({ extended: false }));
 app.use("/activities", activityRoutes);
 app.use("/activitybookings", bookingRoutes);
+app.use("/api/auth", loginRoutes);
 
 const URL = process.env.MONGODB_URL;
 

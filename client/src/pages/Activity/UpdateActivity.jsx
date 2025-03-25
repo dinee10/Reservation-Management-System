@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarAdmin/Navbar";
 
 // Name regex: letters and spaces only
 const nameRegex = /^[A-Za-z\s]+$/;
