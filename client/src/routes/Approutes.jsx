@@ -22,7 +22,6 @@ function AppRoutes() {
         <Router>
             <Routes>
 
-             <Route path="/" element={<Navigate to="/user-blog" />} />
                 
                 
                 <Route path="/add-blog" element={<Blog />} />
