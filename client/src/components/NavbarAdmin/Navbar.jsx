@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import logo from '../../assets/Dinitha/logo3.png'; // Import the logo
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,18 +14,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-5 left-10 right-10 bg-gray-100 shadow-lg rounded-full z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
-        {/* Navbar Title and Logo */}
-        <div className="flex items-center space-x-3">
-          {/* Logo */}
-          <img
-            src={logo}
-            alt="ReservaSys Logo"
-            className="h-12 w-auto object-contain"
-            onError={(e) => {
-              e.target.src = '/fallback-logo.png'; // Fallback image if the logo fails to load
-            }}
-          />
-         
+        {/* Navbar Title and Admin Label */}
+        <div className="flex items-center space-x-4">
+          <div className="text-2xl font-bold text-indigo-900">
+            ReservaSys
+          </div>
+       
         </div>
 
         {/* Desktop Logout Button */}

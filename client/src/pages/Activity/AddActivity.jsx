@@ -155,104 +155,85 @@ function AddActivity() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-800">
+        <div>
             <Navbar />
-            <div className="container mx-auto py-10 px-4">
-                <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
-                    {/* Title */}
-                    <h1 className="text-3xl font-bold text-gray-800 mb-6">Add Activity</h1>
+            <div className="container bg-white rounded shadow p-4 mt-32 lg:mt-40 mb-5">
+                <h1 className="mb-4" style={{ fontWeight: "bold" }}>
+                    Add Activity
+                </h1>
+                <form onSubmit={Submit}>
+                    <div className="form-group mb-3">
+                        <label htmlFor="name" className="form-label">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            className={`form-control ${formErrors.name ? "border-danger" : ""}`}
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={handleChange}
+                        />
+                        {formErrors.name && (
+                            <span className="text-danger">{formErrors.name}</span>
+                        )}
+                    </div>
 
-                    <form onSubmit={Submit}>
-                        {/* Name Field */}
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block text-gray-800 font-semibold mb-2">
-                                Name
-                            </label>
-                            <input
-                                type="text"
-                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                    formErrors.name ? "border-red-500" : "border-gray-300"
-                                }`}
-                                id="name"
-                                name="name"
-                                value={name}
-                                onChange={handleChange}
-                            />
-                            {formErrors.name && (
-                                <span className="text-red-500 text-sm mt-1 block">{formErrors.name}</span>
-                            )}
-                        </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="description" className="form-label">
+                            Description
+                        </label>
+                        <textarea
+                            className={`form-control ${formErrors.description ? "border-danger" : ""}`}
+                            id="description"
+                            name="description"
+                            value={description}
+                            onChange={handleChange}
+                        />
+                        {formErrors.description && (
+                            <span className="text-danger">{formErrors.description}</span>
+                        )}
+                    </div>
 
-                        {/* Description Field */}
-                        <div className="mb-4">
-                            <label htmlFor="description" className="block text-gray-800 font-semibold mb-2">
-                                Description
-                            </label>
-                            <textarea
-                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                    formErrors.description ? "border-red-500" : "border-gray-300"
-                                }`}
-                                id="description"
-                                name="description"
-                                value={description}
-                                onChange={handleChange}
-                                rows="5"
-                            />
-                            {formErrors.description && (
-                                <span className="text-red-500 text-sm mt-1 block">{formErrors.description}</span>
-                            )}
-                        </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="price" className="form-label">
+                            Price
+                        </label>
+                        <input
+                            type="number"
+                            className={`form-control ${formErrors.price ? "border-danger" : ""}`}
+                            id="price"
+                            name="price"
+                            value={price}
+                            onChange={handleChange}
+                        />
+                        {formErrors.price && (
+                            <span className="text-danger">{formErrors.price}</span>
+                        )}
+                    </div>
 
-                        {/* Price Field */}
-                        <div className="mb-4">
-                            <label htmlFor="price" className="block text-gray-800 font-semibold mb-2">
-                                Price
-                            </label>
-                            <input
-                                type="number"
-                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                    formErrors.price ? "border-red-500" : "border-gray-300"
-                                }`}
-                                id="price"
-                                name="price"
-                                value={price}
-                                onChange={handleChange}
-                            />
-                            {formErrors.price && (
-                                <span className="text-red-500 text-sm mt-1 block">{formErrors.price}</span>
-                            )}
-                        </div>
+                    <div className="form-group mb-4">
+                        <label htmlFor="images" className="form-label">
+                            Upload Image
+                        </label>
+                        <input
+                            type="file"
+                            className={`form-control ${formErrors.image ? "border-danger" : ""}`}
+                            id="images"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+                        {formErrors.image && (
+                            <span className="text-danger">{formErrors.image}</span>
+                        )}
+                    </div>
 
-                        {/* Image Upload Field */}
-                        <div className="mb-4">
-                            <label htmlFor="images" className="block text-gray-800 font-semibold mb-2">
-                                Upload Image
-                            </label>
-                            <input
-                                type="file"
-                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                                    formErrors.image ? "border-red-500" : "border-gray-300"
-                                }`}
-                                id="images"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                            />
-                            {formErrors.image && (
-                                <span className="text-red-500 text-sm mt-1 block">{formErrors.image}</span>
-                            )}
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="text-center">
-                            <button
-                                type="submit"
-                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
-                            >
-                                Add Activity
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div className="form-btn">
+                        <button type="submit" className="btn btn-primary">
+                            Add Activity
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     );
