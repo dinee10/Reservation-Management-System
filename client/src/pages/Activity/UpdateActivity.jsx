@@ -182,91 +182,121 @@ function UpdateActivity() {
     };
 
     return (
-        <div>
+        <div className="min-h-screen bg-gray-800">
             <Navbar />
-            <div className="container bg-white rounded shadow p-4 mt-32 lg:mt-40 mb-5">
-                <h1 className="mb-4" style={{ fontWeight: "bold" }}>
-                    Update Activity
-                </h1>
-                <form onSubmit={updateActivity}>
-                    <div className="form-group mb-3">
-                        <label className="form-label">Activity Name</label>
-                        <input
-                            type="text"
-                            className={`form-control ${formErrors.name ? "border-danger" : ""}`}
-                            value={name}
-                            name="name"
-                            onChange={handleChange}
-                        />
-                        {formErrors.name && (
-                            <span className="text-danger">{formErrors.name}</span>
-                        )}
-                    </div>
+            <div className="container mx-auto py-10 px-4">
+                <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+                    {/* Title */}
+                    <h1 className="text-3xl font-bold text-gray-800 mb-6">Update Activity</h1>
 
-                    <div className="form-group mb-3">
-                        <label className="form-label">Description</label>
-                        <textarea
-                            className={`form-control ${formErrors.description ? "border-danger" : ""}`}
-                            value={description}
-                            name="description"
-                            onChange={handleChange}
-                        />
-                        {formErrors.description && (
-                            <span className="text-danger">{formErrors.description}</span>
-                        )}
-                    </div>
-
-                    <div className="form-group mb-3">
-                        <label className="form-label">Price</label>
-                        <input
-                            type="number"
-                            className={`form-control ${formErrors.price ? "border-danger" : ""}`}
-                            value={price}
-                            name="price"
-                            onChange={handleChange}
-                        />
-                        {formErrors.price && (
-                            <span className="text-danger">{formErrors.price}</span>
-                        )}
-                    </div>
-
-                    {/* Display the Existing Image */}
-                    {existingImage && (
-                        <div className="form-group mb-4">
-                            <label className="form-label">Current Image</label>
-                            <div>
-                                <img
-                                    src={`http://localhost:8000/${existingImage}`}
-                                    alt="Current activity"
-                                    style={{ width: "150px", height: "150px", objectFit: "cover" }}
-                                    onError={(e) => {
-                                        e.target.src = "/fallback-image.jpg"; // Fallback image if the current image fails to load
-                                    }}
-                                />
-                            </div>
+                    <form onSubmit={updateActivity}>
+                        {/* Name Field */}
+                        <div className="mb-4">
+                            <label htmlFor="name" className="block text-gray-800 font-semibold mb-2">
+                                Activity Name
+                            </label>
+                            <input
+                                type="text"
+                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                    formErrors.name ? "border-red-500" : "border-gray-300"
+                                }`}
+                                id="name"
+                                name="name"
+                                value={name}
+                                onChange={handleChange}
+                            />
+                            {formErrors.name && (
+                                <span className="text-red-500 text-sm mt-1 block">{formErrors.name}</span>
+                            )}
                         </div>
-                    )}
 
-                    <div className="form-group mb-4">
-                        <label htmlFor="image" className="form-label">
-                            Upload New Image (Optional)
-                        </label>
-                        <input
-                            type="file"
-                            className={`form-control ${formErrors.image ? "border-danger" : ""}`}
-                            id="image"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-                        {formErrors.image && (
-                            <span className="text-danger">{formErrors.image}</span>
+                        {/* Description Field */}
+                        <div className="mb-4">
+                            <label htmlFor="description" className="block text-gray-800 font-semibold mb-2">
+                                Description
+                            </label>
+                            <textarea
+                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                    formErrors.description ? "border-red-500" : "border-gray-300"
+                                }`}
+                                id="description"
+                                name="description"
+                                value={description}
+                                onChange={handleChange}
+                                rows="5"
+                            />
+                            {formErrors.description && (
+                                <span className="text-red-500 text-sm mt-1 block">{formErrors.description}</span>
+                            )}
+                        </div>
+
+                        {/* Price Field */}
+                        <div className="mb-4">
+                            <label htmlFor="price" className="block text-gray-800 font-semibold mb-2">
+                                Price
+                            </label>
+                            <input
+                                type="number"
+                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                    formErrors.price ? "border-red-500" : "border-gray-300"
+                                }`}
+                                id="price"
+                                name="price"
+                                value={price}
+                                onChange={handleChange}
+                            />
+                            {formErrors.price && (
+                                <span className="text-red-500 text-sm mt-1 block">{formErrors.price}</span>
+                            )}
+                        </div>
+
+                        {/* Display the Existing Image */}
+                        {existingImage && (
+                            <div className="mb-4">
+                                <label className="block text-gray-800 font-semibold mb-2">Current Image</label>
+                                <div className="border border-gray-300 rounded-lg p-2 inline-block">
+                                    <img
+                                        src={`http://localhost:8000/${existingImage}`}
+                                        alt="Current activity"
+                                        className="w-32 h-32 object-cover rounded-lg"
+                                        onError={(e) => {
+                                            e.target.src = "/fallback-image.jpg"; // Fallback image if the current image fails to load
+                                        }}
+                                    />
+                                </div>
+                            </div>
                         )}
-                    </div>
 
-                    <button type="submit" className="btn btn-primary">
-                        Update Activity
-                    </button>
-                </form>
+                        {/* Image Upload Field */}
+                        <div className="mb-4">
+                            <label htmlFor="image" className="block text-gray-800 font-semibold mb-2">
+                                Upload New Image (Optional)
+                            </label>
+                            <input
+                                type="file"
+                                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                                    formErrors.image ? "border-red-500" : "border-gray-300"
+                                }`}
+                                id="image"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            {formErrors.image && (
+                                <span className="text-red-500 text-sm mt-1 block">{formErrors.image}</span>
+                            )}
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="text-center">
+                            <button
+                                type="submit"
+                                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+                            >
+                                Update Activity
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

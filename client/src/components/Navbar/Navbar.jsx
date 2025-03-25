@@ -2,16 +2,25 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
+// Import the logo image
+import logo from "../../assets/Dinitha/logo3.png"; // Update the path to your logo file
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-5 left-10 right-10 bg-gray-100 shadow-lg rounded-full z-50">
-      <div className="container mx-auto flex items-center justify-between p-4">
+    <nav className="fixed z-50 bg-white rounded-full shadow-lg top-5 left-10 right-10">
+      <div className="container flex items-center justify-between p-4 mx-auto">
         
-        {/* Navbar Title */}
-        <div className="text-2xl font-bold text-indigo-900">
-          Ceylon Odyssey
+        {/* Navbar Logo */}
+        <div className="text-2xl font-bold">
+          <Link to="/user-blog">
+            <img
+              src={logo}
+              alt="Ceylon Odyssey Logo"
+              className="w-auto h-12" // Adjust height as needed, width will scale proportionally
+            />
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -35,14 +44,10 @@ const Navbar = () => {
           <Link to="/login" className="text-blue-900 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300">
             Sign In
           </Link>
-          
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-900"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className="md:hidden text-gray-900" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -64,4 +69,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;

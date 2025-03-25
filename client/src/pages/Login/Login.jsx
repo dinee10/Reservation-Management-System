@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
+import { User, Lock } from 'lucide-react'; // Icons for username and password fields
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -61,62 +62,81 @@ const Login = () => {
     };
 
     return (
-        <div className="login-page d-flex flex-column min-vh-100 bg-light">
-            <Navbar />
-            <main className="flex-grow-1 d-flex justify-content-center align-items-center">
-                <div 
-                    className="login-container p-4 rounded shadow" 
-                    style={{ 
-                        maxWidth: '350px', 
-                        width: '100%', 
-                        backgroundColor: '#e9ecef' 
-                    }}
-                >
-                    <h2 className="text-center mb-4">Login</h2>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r bg-gray-200">
+            {/* Main Container */}
+            <div className="flex w-full max-w-4xl rounded-lg shadow-lg overflow-hidden">
+                {/* Left Section */}
+                <div className="w-1/2 p-8 text-black relative overflow-hidden">
+                    {/* Diagonal Shapes (Pseudo-elements) */}
+                    <div className="absolute inset-0">
+                        <div className="absolute w-64 h-64 bg-orange-400 opacity-30 rounded-full -top-32 -left-32 transform rotate-45"></div>
+                        <div className="absolute w-64 h-64 bg-orange-400 opacity-30 rounded-full -bottom-32 -right-32 transform rotate-45"></div>
+                    </div>
+                    <h1 className="text-4xl font-bold mb-4">Welcome to Website</h1>
+                    <p className="text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    </p>
+                </div>
+
+                {/* Right Section (Login Form) */}
+                <div className="w-1/2 p-8 bg-white flex flex-col justify-center">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">USER LOGIN</h2>
 
                     {error && (
-                        <div className="alert alert-danger" role="alert">
+                        <div className="bg-red-100 text-red-700 p-3 rounded mb-4" role="alert">
                             {error}
                         </div>
                     )}
                     {success && (
-                        <div className="alert alert-success" role="alert">
+                        <div className="bg-green-100 text-green-700 p-3 rounded mb-4" role="alert">
                             {success}
                         </div>
                     )}
 
                     <form onSubmit={handleLogin}>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="form-control rounded"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                disabled={isLoading}
-                                placeholder="Enter your email"
-                            />
+                        {/* Email Field */}
+                        <div className="mb-4 relative">
+                            <label htmlFor="email" className="block text-gray-600 mb-2">Username</label>
+                            <div className="relative">
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <User size={20} className="text-gray-400" />
+                                </span>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    disabled={isLoading}
+                                    placeholder="Enter your email"
+                                />
+                            </div>
                         </div>
 
-                        <div className="mb-3 position-relative">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                id="password"
-                                className="form-control rounded"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                disabled={isLoading}
-                                placeholder="Enter your password"
-                            />
-                           
+                        {/* Password Field */}
+                        <div className="mb-4 relative">
+                            <label htmlFor="password" className="block text-gray-600 mb-2">Password</label>
+                            <div className="relative">
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <Lock size={20} className="text-gray-400" />
+                                </span>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    id="password"
+                                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    disabled={isLoading}
+                                    placeholder="Enter your password"
+                                />
+                            </div>
                         </div>
 
-                        <div className="d-flex justify-content-between align-items-center mb-3">
-                            <div className="form-check">
+                        {/* Remember Me and Forgot Password */}
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="flex items-center">
                                 <input
                                     type="checkbox"
                                     id="rememberMe"
@@ -125,36 +145,29 @@ const Login = () => {
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                     disabled={isLoading}
                                 />
-                                <label htmlFor="rememberMe" className="form-check-label">
-                                    Remember me
-                                </label>
+                                <label htmlFor="rememberMe" className="ml-2 text-gray-600">Remember me</label>
                             </div>
+                            <a href="#" className="text-blue-500 hover:underline text-sm">Forgot password?</a>
                         </div>
 
+                        {/* Login Button */}
                         <button
                             type="submit"
-                            className={`btn w-100 ${isLoading ? 'disabled' : ''}`}
-                            style={{ 
-                                backgroundColor: '#00bcd4', 
-                                color: 'white', 
-                                border: 'none' 
-                            }}
+                            className={`w-full py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-purple-700 to-pink-500 hover:from-purple-800 hover:to-pink-600 transition duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             disabled={isLoading}
                         >
                             {isLoading ? (
                                 <>
-                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
                                     Logging in...
                                 </>
                             ) : (
-                                'Login'
+                                'LOGIN'
                             )}
                         </button>
                     </form>
-
-                    
                 </div>
-            </main>
+            </div>
         </div>
     );
 };
