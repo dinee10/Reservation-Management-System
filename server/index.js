@@ -1,9 +1,12 @@
 const express = require ('express')
 const mongoose = require ('mongoose')
 const cors = require ('cors')
-const bodyParser = require('body-parser');
 const path = require('path');
 const BlogRoutes = require('./routes/BlogRoutes')
+const activityRoutes = require('./routes/ActivityRoutes');
+const bookingRoutes = require("./routes/ActivityBookingRoute");
+const loginRoutes = require("./routes/auth")
+
 
 const app = express()
 require("dotenv").config();
@@ -12,9 +15,14 @@ const PORT = process.env.PORT || 8000;
 
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.json());
+
 app.use('/BlogImages', express.static(path.join(__dirname, 'BlogImages')));
 app.use('/Blog', BlogRoutes);
+
+app.use(express.static('public/images'));
+app.use("/activities", activityRoutes);
+app.use("/activitybookings", bookingRoutes);
+app.use("/api/auth", loginRoutes);
 
 const URL = process.env.MONGODB_URL;
 
