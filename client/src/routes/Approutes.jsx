@@ -1,4 +1,5 @@
 
+
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog from "../pages/Ishanka/AddBlog"
@@ -15,6 +16,15 @@ import ActivityBook from '../pages/ActivityBook/ActivityBook';
 import ActivityBookinglist from '../pages/ActivityBook/ActivityBooklist';
 import Dashboard from '../pages/Admin/Dashboard';
 import Login from '../pages/Login/Login';
+import RoomsPage from '../pages/Roomspage';
+import RoomDetails from '../pages/RoomDetails';
+import AddRoom from '../pages/AddRoom';
+import UpdateRoom from '../pages/UpdateRoom';
+import RoomList from '../pages/RoomList';
+import CustomerContactDetails from '../pages/CustomerContactDetails';
+import CustomerBookingList from '../pages/CustomerList';
+import '../App.css';
+
 
 function AppRoutes() {
    const [count, setCount] = useState(0);
@@ -41,6 +51,15 @@ function AppRoutes() {
         <Route path="/activities/customer" element={<Activities />} />
         <Route path="/activitybooking/:activityId" element={<ActivityBook/>} />
         <Route path="/activities/customer/book" element={<ActivityBookinglist />} />
+          
+  <Route path="/rooms" element={<RoomsPage />} />
+  <Route path="/room/:id" element={<RoomDetails />} />
+  <Route path="/room/:id/book" element={<CustomerContactDetails />} />
+  <Route path="/rooms/create" element={<AddRoom />} />
+  <Route path="/rooms/update/:id" element={<UpdateRoom />} />
+  <Route path="/rooms/list" element={<RoomList />} />
+  <Route path="/customer/list" element={<CustomerBookingList/>} />
+
                   
 
                 <Route 
@@ -58,6 +77,6 @@ function AppRoutes() {
     );
 }
 
-export default Approutes;
+export default AppRoutes;
 
 
