@@ -157,8 +157,9 @@ function AddActivity() {
     return (
         <div className="min-h-screen bg-gray-800">
             <Navbar />
-            <div className="container mx-auto py-10 px-4">
-                <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+            <div className="h-16"></div> {/* Spacer div with a height of 4rem (64px) */}
+                <div className="container mx-auto py-10 px-4">
+                    <div className="bg-white rounded-lg shadow-lg p-6">
                     {/* Title */}
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Add Activity</h1>
 

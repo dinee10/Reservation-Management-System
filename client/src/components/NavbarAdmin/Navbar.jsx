@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     // Add any logout logic here (e.g., clearing tokens)
-    navigate('/');
+    navigate('/user-blog');
   };
 
   return (
