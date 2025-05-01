@@ -1,6 +1,6 @@
-import UpdateBlog from "../../Ishanka/UpdateBlog";
+import UpdateBlog from "./UpdateBlog";
 import { Link } from "react-router-dom";
-import back from "../../../assets/Back.png";
+import back from "../../assets/Back.png";
 
 const AdminUpdateTour = () => {
 
