@@ -1,9 +1,8 @@
 import React from 'react'
 import { Space } from 'antd'
 import Navbar from '../../components/NavbarAdmin/Navbar'
-import SideMenu from '../../components/SideMenu/Sidemenu'
+import SideMenu from '../../components/SideMenu/SideMenu'
 import PageContent from '../../components/PageContent/PageContent'
-import Footer from '../../components/Footer'
 import { Outlet } from 'react-router-dom'
 
 function Dashboard() {
@@ -49,7 +48,7 @@ function Dashboard() {
           <Outlet />
         </Space>
       </main>
-      <Footer/>
+    
 
       
     </div>

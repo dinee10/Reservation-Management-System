@@ -31,7 +31,7 @@ function SideMenu() {
                     {
                         label: "Rooms",
                         icon: <ShopOutlined />,
-                        key: '/',
+                        key: '/rooms/list',
                         style: { marginBottom: '15px' }
                     },
                     {
@@ -43,7 +43,7 @@ function SideMenu() {
                     {
                         label: "Blogs",
                         icon: <FileWordOutlined />,
-                        key: '/',
+                        key: '/blog-list',
                         style: { marginBottom: '15px' }
                     },
                 ]}

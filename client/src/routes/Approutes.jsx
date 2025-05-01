@@ -39,7 +39,7 @@ function AppRoutes() {
                 <Route path="/user-blog" element={<TourismBlog />} />
                 <Route path ="/blog/:id" element = {<IndividualBlog />} />
                    {/* Redirect to Activity List by default */}
-                <Route path="/" element={<Navigate to="/dashboard" />} />
+               
       
         
         {/* Activity Management Routes */}

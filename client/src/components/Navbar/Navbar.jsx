@@ -13,8 +13,8 @@ const Navbar = () => {
   return (
 
     <nav className="fixed z-50 bg-white rounded-full shadow-lg top-5 left-10 right-10">
-      <div className="container flex items-center justify-between p-4 mx-auto">
-        
+      <div className="container flex items-center justify-between p-2 mx-auto">
+
         {/* Navbar Logo */}
         <div className="text-2xl font-bold">
           <Link to="/user-blog">
@@ -27,24 +27,15 @@ const Navbar = () => {
         </div>
 
  
-    <nav className="fixed top-5 left-10 right-10 bg-gray-100 shadow-lg rounded-full z-50">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        
-        {/* Navbar Title */}
-        <div className="text-2xl font-bold text-indigo-900">
-          Ceylon Odyssey
-        </div>
+   
 
         {/* Desktop Menu */}
         <div className="hidden md:flex flex-1 justify-center space-x-8">
           <Link to="/user-blog" className="text-gray-700 hover:text-blue-600 transition duration-300">
             Home
           </Link>
-          <Link to="#" className="text-gray-700 hover:text-blue-600 transition duration-300">
-            Hotels
-          </Link>
-          <Link to="#" className="text-gray-700 hover:text-blue-600 transition duration-300">
-            Blog
+          <Link to="/rooms" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            Rooms
           </Link>
           <Link to="/activities/customer" className="text-gray-700 hover:text-blue-900 transition duration-300">
             Tasks
@@ -58,18 +49,12 @@ const Navbar = () => {
           <Link to="/login" className="text-blue-900 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300">
             Sign In
           </Link>
+
           
      </div>
 
-        {/* Mobile Menu Button */}
-        <button
-
-          className="text-gray-900 md:hidden"
-
-          className="md:hidden text-gray-900"
-
-          onClick={() => setIsOpen(!isOpen)}
-        >
+       {/* Mobile Menu Button */}
+       <button className="md:hidden text-gray-900" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -80,7 +65,6 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-md rounded-lg mt-2 p-4 absolute top-16 left-10 right-10 z-50">
           <Link to="/about" className="block text-gray-700 py-2 hover:text-blue-600">About</Link>
           <Link to="/contact" className="block text-gray-700 py-2 hover:text-blue-600">Contact</Link>
-          <Link to="/blog" className="block text-gray-700 py-2 hover:text-blue-600">Blog</Link>
           <Link to="/destinations" className="block text-gray-700 py-2 hover:text-blue-600">Destinations</Link>
           <div className="mt-4">
             <Link to="/login" className="block text-blue-600 py-2 hover:bg-gray-300 rounded-lg text-center">Sign In</Link>
@@ -94,5 +78,6 @@ const Navbar = () => {
 };
 
 
-export default Navbar;
+export default Navbar;
+
 
