@@ -47,7 +47,7 @@ const Admin = () => {
       <aside className="flex flex-col w-64 text-white bg-gray-800">
         <div className="p-4 text-xl font-bold bg-gray-900">Admin Dashboard</div>
         <nav className="flex-1 px-2 py-4">
-          {['Manage Blogs', 'Add Blogs'].map((tab) => (
+          {['Manage Blogs', 'Add Blogs','ff'].map((tab) => (
             <button
               key={tab}
               onClick={() => handleTabChange(tab)}
@@ -84,7 +84,7 @@ const Admin = () => {
             {/*{error && <div className="mb-4 text-red-600">{error}</div>}*/}
             {activeTab === 'Manage Blogs' && <BlogList />}
             {activeTab === 'Add Blogs' && <AddBlog />} 
-            
+            {activeTab === 'ff' && <AddBlog />} 
 
           </>
         )}
