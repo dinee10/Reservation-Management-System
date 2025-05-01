@@ -43,7 +43,7 @@ function SideMenu() {
                     {
                         label: "Blogs",
                         icon: <FileWordOutlined />,
-                        key: '/blog-list',
+                        key: '/blog',
                         style: { marginBottom: '15px' }
                     },
                 ]}
