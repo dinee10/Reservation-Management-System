@@ -23,5 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+
+# Environment files
+.env
+
 # Vite-specific
 client/node_modules/.vite
+

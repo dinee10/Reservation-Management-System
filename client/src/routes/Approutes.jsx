@@ -1,4 +1,9 @@
 import { useState } from 'react';
+
+
+
+
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; // Added Navigate import
 import Blog from '../pages/Ishanka/AddBlog';
 import BlogList from '../pages/Ishanka/BlogList';
@@ -21,6 +26,7 @@ import UpdateRoom from '../pages/UpdateRoom';
 import RoomList from '../pages/RoomList';
 import CustomerContactDetails from '../pages/CustomerContactDetails';
 import CustomerBookingList from '../pages/CustomerList';
+import Chatbot from '../components/chatbot/chatbot'; 
 import '../App.css';
 
 function AppRoutes() {
@@ -28,6 +34,7 @@ function AppRoutes() {
 
     return (
         <Router>
+        <Chatbot />
             <Routes>
                 {/* Redirect to Dashboard by default */}
                 <Route path="/" element={<Navigate to="/user-blog" />} />
@@ -71,6 +78,7 @@ function AppRoutes() {
                     }
                 />
             </Routes>
+
         </Router>
     );
 }
