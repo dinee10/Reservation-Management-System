@@ -1,0 +1,167 @@
+
+.chatbot-container {
+    position: fixed; 
+    width: 100vw;
+    height: 100vh;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+  }
+  
+  
+  .chatbot-popup {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background: url('../chatbot/img/background.jpg');
+    z-index: 999; 
+  }
+  
+  
+  
+  .chatbot-box {
+    width: 50%;
+    max-width: 400px;
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative; 
+  }
+  
+  
+  
+  .chatbot-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .chatbot-textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 10px;
+  }
+  
+  
+  .speaker-container{
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    justify-content: center;
+    cursor: pointer;
+    
+  }
+  
+  .voice{
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    padding-left: 70px;
+  }
+  
+  .chatbot-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .chatbot-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .chatbot-response {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  
+  /* Style for the response list */
+  .chatbot-response ul {
+  
+    padding-left: 20px; /* Adds spacing between the list items and the border */
+  }
+  
+  .chatbot-response li {
+    margin-bottom: 3px;
+  }
+  
+  
+  
+  .toggle-chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1010;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+  }
+  
+  .toggle-chatbot-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* speake part css */
+  .speaker{
+    background-color: #008744;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3 ease;
+  }
+  
+  .voiceOutText{
+    margin-top: 20px;
+    width:100%;
+    padding: 10px;
+    border: '1px solid #ccc';
+    border-radius: 5px;
+    transition: 'border-color 0.3 ease';
+    resize: none;
+    background-color: #f8f8f8;
+    color: #333;
+  
+  }
+  
+  .voice-text{
+    color: #ffffff;
+  }
+  
+  
