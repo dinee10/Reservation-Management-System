@@ -233,7 +233,7 @@ function UpdateActivity() {
                         {/* Price Field */}
                         <div className="mb-4">
                             <label htmlFor="price" className="block text-gray-800 font-semibold mb-2">
-                                Price
+                                Price (Rs.)
                             </label>
                             <input
                                 type="number"

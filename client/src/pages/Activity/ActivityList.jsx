@@ -15,7 +15,15 @@ function ActivityList() {
     useEffect(() => {
         axios.get("http://localhost:8000/activities")
             .then(result => setActivities(result.data.activities))
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error("Error fetching activities:", err);
+                Swal.fire({
+                    title: "Error",
+                    text: "Failed to fetch activities. Please try again.",
+                    icon: "error",
+                    confirmButtonText: "OK",
+                });
+            });
     }, []);
 
     const deleteActivity = (id) => {
@@ -32,7 +40,15 @@ function ActivityList() {
                         setActivities(activities.filter(activity => activity._id !== id));
                         Swal.fire("Deleted!", "Activity has been deleted.", "success");
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                        console.error("Error deleting activity:", err);
+                        Swal.fire({
+                            title: "Error",
+                            text: "Failed to delete activity. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                        });
+                    });
             }
         });
     };
@@ -63,70 +79,83 @@ function ActivityList() {
     };
 
     const generatePDF = async () => {
-        // Show loading indicator
-        Swal.fire({
-            title: "Generating PDF...",
-            text: "Please wait while the report is being generated.",
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            },
-        });
-
-        const doc = new jsPDF();
-
-        // Convert the local logo to base64
-        let logoBase64;
         try {
-            logoBase64 = await convertLocalImageToBase64(logo);
-        } catch (error) {
-            console.error("Error converting logo to base64:", error);
-        }
+            // Show loading indicator
+            Swal.fire({
+                title: "Generating PDF...",
+                text: "Please wait while the report is being generated.",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
 
-        // Add the logo to the PDF if it loaded successfully
-        if (logoBase64) {
+            const doc = new jsPDF();
+
+            // Convert the local logo to base64
+            let logoBase64;
             try {
-                doc.addImage(logoBase64, "PNG", 14, 10, 50, 20); // Adjust position (x, y) and size (width, height)
+                logoBase64 = await convertLocalImageToBase64(logo);
             } catch (error) {
-                console.error("Error adding logo to PDF:", error);
+                console.error("Error converting logo to base64:", error);
             }
-        } else {
-            console.warn("Unable to load logo for PDF. Skipping logo.");
+
+            // Add the logo to the PDF if it loaded successfully
+            if (logoBase64) {
+                try {
+                    doc.addImage(logoBase64, "PNG", 14, 10, 50, 20); // Adjust position (x, y) and size (width, height)
+                } catch (error) {
+                    console.error("Error adding logo to PDF:", error);
+                }
+            } else {
+                console.warn("Unable to load logo for PDF. Skipping logo.");
+            }
+
+            // Add the title and date below the logo
+            doc.setFontSize(22);
+            doc.text("Activity Report", 105, 40, { align: "center" });
+
+            doc.setFontSize(16);
+            doc.text("Activity List", 14, 50);
+
+            doc.setFontSize(12);
+            doc.text("Updated activity list on " + new Date().toLocaleDateString(), 14, 60);
+
+            // Define table headers and rows
+            const headers = [["Name", "Description", "Price"]];
+            const rows = filteredActivities.map(activity => [
+                activity.name,
+                activity.description,
+                `Rs.${activity.price}`,
+            ]);
+
+            // Add the table without images
+            autoTable(doc, {
+                head: headers,
+                body: rows,
+                startY: 70, // Adjusted to start below the logo and text
+                columnStyles: {
+                    0: { cellWidth: 50 }, // Name column
+                    1: { cellWidth: 80 }, // Description column
+                    2: { cellWidth: 40 }, // Price column
+                },
+            });
+
+            // Save the PDF
+            const dateStr = new Date().toLocaleDateString().replace(/\//g, '-'); // Replace slashes with hyphens for valid filename
+            doc.save(`activity_report_${dateStr}.pdf`);
+
+            // Close the loading indicator
+            Swal.close();
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+            Swal.fire({
+                title: "Error",
+                text: "Failed to generate PDF. Please try again.",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
         }
-
-        // Add the title and date below the logo
-        doc.setFontSize(22);
-        doc.text("Activity Report", 105, 40, { align: "center" });
-
-        doc.setFontSize(16);
-        doc.text("Activity List", 14, 50);
-
-        doc.setFontSize(12);
-        doc.text("Updated activity list on " + new Date().toLocaleDateString(), 14, 60);
-
-        // Define table headers and rows (removed the Image column)
-        const headers = [["Name", "Description", "Price"]];
-        const rows = filteredActivities.map(activity => [
-            activity.name,
-            activity.description,
-            `$${activity.price}`,
-        ]);
-
-        // Add the table without images
-        autoTable(doc, {
-            head: headers,
-            body: rows,
-            startY: 70, // Adjusted to start below the logo and text
-            columnStyles: {
-                0: { cellWidth: 50 }, // Name column
-                1: { cellWidth: 80 }, // Description column
-                2: { cellWidth: 40 }, // Price column
-            },
-        });
-
-        // Save the PDF and close the loading indicator
-        doc.save("activity_report_" + new Date().toLocaleDateString() + ".pdf");
-        Swal.close();
     };
 
     return (
@@ -185,6 +214,7 @@ function ActivityList() {
                                                 src={`http://localhost:8000/${activity.image}`}
                                                 alt={activity.name}
                                                 className="w-full h-full object-cover rounded-lg"
+                                                onError={(e) => { e.target.src = '/fallback-image.jpg'; }}
                                             />
                                         ) : (
                                             <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
@@ -196,7 +226,7 @@ function ActivityList() {
                                     {/* Text Content */}
                                     <div className="flex-1">
                                         <h4 className="text-lg font-semibold text-gray-800">{activity.name}</h4>
-                                        <p className="text-sm text-gray-500">Price: ${activity.price}</p>
+                                        <p className="text-sm text-gray-500">Price: Rs.{activity.price}</p>
                                         <p className="text-sm text-gray-600 line-clamp-2">{activity.description}</p>
                                     </div>
 

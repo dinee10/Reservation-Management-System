@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 
-
 const ActivitiesPage = () => {
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -76,13 +75,12 @@ const ActivitiesPage = () => {
                                 />
                                 <h2 className="text-xl font-semibold mt-2">{activity.name}</h2>
                                 <p className="text-gray-700 mt-2">{activity.description}</p>
-                                <p className="text-green-600 font-bold mt-2">${activity.price}</p>
+                                <p className="text-green-600 font-bold mt-2">Rs.{activity.price}</p>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
-            
         </div>
     );
 };
